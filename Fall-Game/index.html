@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fall Game</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #game{
+            width: 400px;
+            height: 500px;
+            border: 1px solid;
+            margin: auto;
+        }
+        #character{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            position: relative;
+            top: 440px;
+            left: 190px;
+            z-index: 1;
+        }
+        .block{
+            width: 400px;
+            height: 20px;
+            background-color: black;
+            position: relative;
+            top: 100px;
+            margin-top: -20px;
+
+        }
+        .hole{
+            width: 40px;
+            height: 20px;
+            position: relative;
+            background-color: white;
+            top: 100px;
+            margin-top: -20px;
+        }
+    </style>
+</head>
+<body>
+<div id="game">
+    <div id="character"></div>
+</div>
+
+<script src="script.js"></script>
+    
+</body>
+</html>
