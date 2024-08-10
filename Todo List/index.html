@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        #searchBar {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+        #addItem {
+            padding: 10px 15px;
+            background: #2196F3;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        #addItem:hover {
+            background: #0b7dda;
+        }
+        .todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .todo-list .item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .todo-list .item:last-child {
+            border-bottom: none;
+        }
+        .todo-list .icons {
+            display: flex;
+            gap: 10px;
+        }
+        .todo-list .icons i {
+            cursor: pointer;
+            color: #555;
+        }
+        .todo-list .icons i:hover {
+            color: #000;
+        }
+        #clearItems {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            border-radius: 4px;
+        }
+        #clearItems:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List <i class="fas fa-list"></i></h2>
+        <div class="search-bar">
+            <input type="text" placeholder="Add a new task..." id="searchBar">
+            <button type="button" id="addItem"><i class="fa fa-plus"></i></button>
+        </div>
+        <ul class="todo-list" id="listContainer"></ul>
+        <button id="clearItems">Clear All</button>
+    </div>
+
+    <script src="script.js">
+       
+    </script>
+</body>
+</html>
