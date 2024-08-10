@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout Game</title>
+    <style>
+        .grid{
+            position: absolute;
+            width: 560px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        .block{
+            width: 100px;
+            height: 20px;
+            background-color: purple;
+            position: absolute;
+            
+        }
+        .user{
+            width: 100px;
+            height: 20px;
+            background-color:darkslategrey;
+            position: absolute;
+            
+        }
+        .ball{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: red;
+            position: absolute;
+
+        }
+        h1{
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+  
+    <h1>YOUR SCORE: <span id="Score"></span></h1>
+    <div class="grid" id="grid">
+        
+    </div>
+    
+
+    <script src="breakout-game.js">    </script>
+    
+</body>
+</html>
