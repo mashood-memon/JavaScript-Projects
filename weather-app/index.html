@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Weather App</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        *{
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #43AFFc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .wrapper{
+            width: 400px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
+        }
+        .wrapper header {
+            display: flex;
+            font-size: 21px;
+            font-weight: 500;
+            color: #43AFFc;
+            padding: 16px 15px;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+        header i{
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-right: 8px;
+        }
+        .wrapper .input-part{
+            margin: 20px 25px 30px;
+            
+        }
+        .display-none{
+          display: none;
+
+        }
+        .input-part :where(input, button){
+            width: 100%;
+            height: 55px;
+            border: none;
+            outline: none;
+            font-size: 18px;
+            border-radius: 7px;
+        }
+        .input-part input:focus{
+            border: 1px solid #43AFFc;
+        }
+        .input-part input{
+            text-align: center;
+            border: 1px solid #bfbfbf;
+        }
+        .input-part button{
+            color: #fff;
+            background-color: #43AFFc;
+            cursor: pointer;
+        }
+        .input-part .seperator{
+            height: 1px ;
+            width: 100%;
+            margin: 25px 0px;
+            background: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .seperator::before{
+            content: "OR";
+            padding: 0 15px;
+            font-size: 19px;
+            background: #fff;
+            color: #bdbdbd;
+        }
+        .info-text{
+            font-size: 17px;
+            text-align: center;
+            padding: 12px 10px;
+            border-radius: 7px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .info-text.error{
+            display: block;
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        .info-text.pending{
+            display: block;
+            color: #0c5460;
+            display: block;
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+        }
+        .wrapper .weather-part{
+            margin: 30px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .weather-part img{
+            max-width: 125px;
+        }
+        .wrapper .weather-part{
+  display: none;
+  margin: 30px 0 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.wrapper.active .weather-part{
+  display: flex;
+}
+.weather-part img{
+  max-width: 125px;
+}
+.weather-part .temperature{
+  display: flex;
+  font-weight: 500;
+  font-size: 72px;
+}
+.weather-part .temperature .deg{
+  font-size: 40px;
+  display: block;
+  margin: 10px 5px 0 0;
+}
+.weather-part .weather{
+  font-size: 21px;
+  text-align: center;
+  margin: -5px 20px 15px;
+}
+.weather-part .location{
+  display: flex;
+  font-size: 19px;
+  padding: 0 20px;
+  text-align: center;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+.location i{
+  font-size: 22px;
+  margin: 4px 5px 0 0;
+}
+.weather-part .bottom-details{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+}
+.bottom-details .column{
+  display: flex;
+  width: 100%;
+  padding: 15px 0;
+  align-items: center;
+  justify-content: center;
+}
+.column i{
+  color: #5DBBFF;
+  font-size: 40px;
+}
+.column.humidity{
+  border-left: 1px solid #ccc;
+}
+.column .details{
+  margin-left: 3px;
+}
+.details .temp, .humidity span{
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: -3px;
+}
+.details .temp .deg{
+  margin: 0;
+  font-size: 17px;
+  padding: 0 2px 0 1px;
+}
+.column .details p{
+  font-size: 14px;
+  margin-top: -6px;
+}
+.humidity i{
+  font-size: 37px;
+}
+.column.feels .temperature {  
+    font-size: 30px; 
+}
+
+.column.feels .temperature .deg {
+    font-size: 32px; 
+    display: block;
+    margin: 0px 0px 0 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="wrapper ">
+        <header><i class='bx bx-left-arrow-alt'></i>Weather App</header>
+        <section class="input-part">
+            <p class="info-text ">Please Enter Valid City Name</p>
+            <input type="text" placeholder="Enter City Name" spellcheck="false" required>
+            <div class="seperator"></div>
+            <button>Get Device Location</button>
+        </section>
+        <section class="weather-part">
+            <img src="#" alt="weather img">
+            <div class="temperature">
+                <span class="num">19</span>
+                <span class="deg">°</span>C
+            </div>
+            <div class="weather-update">Thunder Storm</div>
+            <div class="location">
+                <i class='bx bx-map' ></i>
+                <span>karachi, Pakistan</span>
+            </div>
+            <div class="bottom-details">
+                <div class="column feels">
+                    <i class='bx bxs-thermometer' ></i>
+                    <div class="details">
+                        <div class="temperature">
+                            <span class="num">19</span>
+                            <span class="deg">°</span>C
+                        </div>
+                        <p>Feels Like</p>
+                    </div>
+                </div>
+                <div class="column humidity">
+                    <i class='bx bxs-droplet-half' ></i>
+                    <div class="details">
+                        <span class="num"> 67%</span>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
